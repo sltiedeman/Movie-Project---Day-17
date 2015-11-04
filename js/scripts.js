@@ -42,6 +42,7 @@ $(document).ready(function(){
 			var releaseDate = movieArray[i].release_date;
 			var voteAverage = movieArray[i].vote_average;
 			var voteCount = movieArray[i].vote_count;	
+			var release_date = movieArray[i].release_date;
 
 			if(i==0){
 				html += '<div class="movie-row">';
@@ -71,7 +72,9 @@ $(document).ready(function(){
 			}else{
 				html2+='<img src="' + basePath + 'w300' + backdrop_path + '">';
 			}
-			html2+='<div class="modal-text"><h3>' + title +'</h3>' + overview + '</div>';			
+
+
+			html2+='<div class="modal-text"><h3>' + title + ' (' + release_date + ')</h3>' + overview + '</div>';			
 			html2+='</div>';
 			html2+='<div class="modal-footer">';
 			html2+='<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
@@ -111,13 +114,13 @@ $(document).ready(function(){
 				break;
 
 		}
+
 		console.log(searchUrl);
 
 		$.getJSON(searchUrl, function(data){
 			var html="";
 			var html2="";
 			movieArray = data.results;
-			console.log(movieArray);
 			$('#search-results').text("Search Results");
 			$('#now-playing-wrapper').html("");
 			for(i=0; i<movieArray.length; i++){
@@ -129,8 +132,11 @@ $(document).ready(function(){
 				var overview = movieArray[i].overview;
 				var posterPath = movieArray[i].poster_path;
 				var profilePath = movieArray[i].profile_path;
-				console.log("posterPath is" + posterPath);
+				var name = movieArray[i].name;
+				var known_for = movieArray[i].known_for;
+				var release_date = movieArray[i].release_date;
 
+				
 				if(i==0){
 					html += '<div class="movie-row">';
 				}
@@ -178,10 +184,18 @@ $(document).ready(function(){
 				// html2+='<h4 class="modal-title" id="myModalLabel">Additional Information</h4>';
 				// html2+='</div>';
 				html2+='<div class="modal-body">';
-				if(searchOption == "Actor/Actress"){
+				if((searchOption == "Actor/Actress")||((searchOption =="All")&&(known_for!=null))){
 					html2+='<div class="modal-text"><h3>' + movieArray[i].name + "</h3>";
+					html2+="<span>Know For: </span>";
+					for(k=0; k<movieArray[i].known_for.length; k++){
+						html2+="<span>" + movieArray[i].known_for[k].original_title;
+						if(k!=(movieArray[i].known_for.length)-1){
+							html2+=", </span>";
+						}else{
+							html2+="</span>";
+						}
+					}
 					html2+="<p>Popularity: " + movieArray[i].popularity + "</p>";
-					html2+="<p>Known For: " + movieArray[i].known_for[0].original_title + "</p>";
 					html2+='</div>';
 				}else{
 					if(backdrop_path == null){
@@ -189,7 +203,16 @@ $(document).ready(function(){
 					}else{
 						html2+='<img src="' + basePath + 'w300' + backdrop_path + '">';
 					}
-					html2+='<div class="modal-text"><h3>' + title +'</h3>' + overview + '</div>';
+					if(movieArray[i].name == null){
+						html2+='<div class="modal-text"><h3>' + title + ' (' + release_date + ')</h3>';
+					}else{
+						html2+='<div class="modal-text"><h3>' + name +'</h3>';
+					}
+					if(movieArray[i].overview != null){
+						html2+=overview + '</div>';
+					}else{
+						html2+='No summary available.</div>';
+					}
 				}
 				html2+='</div>';
 				html2+='<div class="modal-footer">';
