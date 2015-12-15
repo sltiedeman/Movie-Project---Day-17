@@ -58,8 +58,11 @@ $(document).ready(function(){
 				html += '<div class="now-playing-movie">';
 				html += '<div id="movie">'
 
-
-				html += '<img data-toggle="modal" data-target="#myModal' + i +'" title="'+overview+'" alt="'+title+'" src="'+basePath+'w300'+posterPath+'">';
+				if (posterPath != null){ 
+					html += '<img data-toggle="modal" data-target="#myModal' + i +'" title="'+overview+'" alt="'+title+'" src="'+basePath+'w300'+posterPath+'">';
+				}else{
+					html += '<img data-toggle="modal" data-target="#myModal' + i + '" src="images/blank.jpg">';
+				}
 				html += '</div></div>';
 				html2+='<div class="modal fade" id=myModal' + i + ' tabindex="-1" role="dialog" aria-labelledby="myModalLabel">';
 				html2+='<div class="modal-dialog" role="document">';
@@ -91,7 +94,7 @@ $(document).ready(function(){
 				}
 
 			}
-		},500);
+		},300);
 	});	
 
 	$('#movie-search-form').submit(function(){
