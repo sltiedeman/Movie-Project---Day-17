@@ -30,66 +30,68 @@ $(document).ready(function(){
 		movieArray = data.results;
 		// movieArray = objectArray;
 		// for(i=0; i<data.results.length; i++){
-		for(i=0; i<movieArray.length; i++){
-			x++;
-			var backdrop_path = movieArray[i].backdrop_path;
-			var genre_ids = movieArray[i].genre_ids;
-			var movieId = movieArray[i].id;
-			var title = movieArray[i].title;
-			var overview = movieArray[i].overview;
-			var popularity = movieArray[i].popularity;
-			var posterPath = movieArray[i].poster_path;
-			var releaseDate = movieArray[i].release_date;
-			var voteAverage = movieArray[i].vote_average;
-			var voteCount = movieArray[i].vote_count;	
-			var release_date = movieArray[i].release_date;
+		setTimeout(function(){
+			for(i=0; i<movieArray.length; i++){
+				x++;
+				var backdrop_path = movieArray[i].backdrop_path;
+				var genre_ids = movieArray[i].genre_ids;
+				var movieId = movieArray[i].id;
+				var title = movieArray[i].title;
+				var overview = movieArray[i].overview;
+				var popularity = movieArray[i].popularity;
+				var posterPath = movieArray[i].poster_path;
+				var releaseDate = movieArray[i].release_date;
+				var voteAverage = movieArray[i].vote_average;
+				var voteCount = movieArray[i].vote_count;	
+				var release_date = movieArray[i].release_date;
 
-			if(i==0){
-				html += '<div class="movie-row">';
+				if(i==0){
+					html += '<div class="movie-row">';
+				}
+
+				if(x==5){
+					html += '</div>';
+					html += '<div class="movie-row">';
+					x=1;
+				}
+
+				html += '<div class="now-playing-movie">';
+				html += '<div id="movie">'
+
+
+				html += '<img data-toggle="modal" data-target="#myModal' + i +'" title="'+overview+'" alt="'+title+'" src="'+basePath+'w300'+posterPath+'">';
+				html += '</div></div>';
+				html2+='<div class="modal fade" id=myModal' + i + ' tabindex="-1" role="dialog" aria-labelledby="myModalLabel">';
+				html2+='<div class="modal-dialog" role="document">';
+				// html2+='<div class="modal-content">';
+				// html2+='<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+				// html2+='<h4 class="modal-title" id="myModalLabel">Additional Information</h4>';
+				// html2+='</div>';
+				html2+='<div class="modal-body">';
+				if(backdrop_path == null){
+					html2+='<img src = images/blank2.jpg>'
+				}else{
+					html2+='<img src="' + basePath + 'w300' + backdrop_path + '">';
+				}
+
+
+				html2+='<div class="modal-text"><h3>' + title + ' (' + release_date + ')</h3>' + overview + '</div>';			
+				html2+='</div>';
+				html2+='<div class="modal-footer">';
+				html2+='<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+				html2+='</div>';
+				html2+='</div>';
+				html2+='</div>';
+				html2+='</div>';
+				
+				if(i == (movieArray.length-1)){
+					html += '</div>';
+					$(html).appendTo('#now-playing-wrapper');
+					$(html2).appendTo('#now-playing-wrapper');
+				}
+
 			}
-
-			if(x==5){
-				html += '</div>';
-				html += '<div class="movie-row">';
-				x=1;
-			}
-
-			html += '<div class="now-playing-movie">';
-			html += '<div id="movie">'
-
-
-			html += '<img data-toggle="modal" data-target="#myModal' + i +'" title="'+overview+'" alt="'+title+'" src="'+basePath+'w300'+posterPath+'">';
-			html += '</div></div>';
-			html2+='<div class="modal fade" id=myModal' + i + ' tabindex="-1" role="dialog" aria-labelledby="myModalLabel">';
-			html2+='<div class="modal-dialog" role="document">';
-			// html2+='<div class="modal-content">';
-			// html2+='<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-			// html2+='<h4 class="modal-title" id="myModalLabel">Additional Information</h4>';
-			// html2+='</div>';
-			html2+='<div class="modal-body">';
-			if(backdrop_path == null){
-				html2+='<img src = images/blank2.jpg>'
-			}else{
-				html2+='<img src="' + basePath + 'w300' + backdrop_path + '">';
-			}
-
-
-			html2+='<div class="modal-text"><h3>' + title + ' (' + release_date + ')</h3>' + overview + '</div>';			
-			html2+='</div>';
-			html2+='<div class="modal-footer">';
-			html2+='<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-			html2+='</div>';
-			html2+='</div>';
-			html2+='</div>';
-			html2+='</div>';
-			
-			if(i == (movieArray.length-1)){
-				html += '</div>';
-				$(html).appendTo('#now-playing-wrapper');
-				$(html2).appendTo('#now-playing-wrapper');
-			}
-
-		}
+		},500);
 	});	
 
 	$('#movie-search-form').submit(function(){
