@@ -1,3 +1,7 @@
+function viewProject(){
+	document.getElementById("intro-page").style.display="none";
+}
+
 $(document).ready(function(){
 
 	var apiKey = '1fb720b97cc13e580c2c35e1138f90f8';
