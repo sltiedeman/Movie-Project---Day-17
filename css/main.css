@@ -1,31 +1,26 @@
 /* line 1, ../compass/sass/main.scss */
 #intro-page-wrapper {
+  text-align: center;
+  overflow: scroll;
   position: absolute;
-  height: 100vh;
   width: 100%;
   background-color: rgba(64, 64, 64, 0.95);
-  top: 0%;
-  left: 0%;
+  top: 0px;
+  left: 0px;
   z-index: 1000000000;
   color: #f2f2f2;
 }
 
 /* line 13, ../compass/sass/main.scss */
-#intro-page {
-  text-align: center;
-  overflow: scroll;
-}
-
-/* line 18, ../compass/sass/main.scss */
-#intro-page h1 {
+#intro-page-wrapper h1 {
   font-family: 'Varela Round', sans-serif;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 3px;
 }
 
-/* line 25, ../compass/sass/main.scss */
-#intro-page p {
+/* line 20, ../compass/sass/main.scss */
+#intro-page-wrapper p {
   line-height: 125%;
   width: 60%;
   margin: auto;
@@ -37,8 +32,8 @@
   font-weight: 300;
 }
 
-/* line 37, ../compass/sass/main.scss */
-#intro-page button {
+/* line 32, ../compass/sass/main.scss */
+#intro-page-wrapper button {
   font-family: 'Varela Round', sans-serif;
   text-transform: uppercase;
   text-align: center;
@@ -53,38 +48,38 @@
   letter-spacing: 3px;
 }
 
-/* line 52, ../compass/sass/main.scss */
-#intro-page button:hover {
+/* line 47, ../compass/sass/main.scss */
+#intro-page-wrapper button:hover {
   cursor: pointer;
   background-color: #ffc04d;
 }
 
-/* line 57, ../compass/sass/main.scss */
+/* line 52, ../compass/sass/main.scss */
 #movie-wrapper {
   color: white;
 }
-/* line 59, ../compass/sass/main.scss */
+/* line 54, ../compass/sass/main.scss */
 #movie-wrapper img {
   width: 100%;
 }
-/* line 62, ../compass/sass/main.scss */
+/* line 57, ../compass/sass/main.scss */
 #movie-wrapper .search-form {
   margin-top: 20px;
   text-align: center;
 }
-/* line 66, ../compass/sass/main.scss */
+/* line 61, ../compass/sass/main.scss */
 #movie-wrapper .movie-row {
   overflow: hidden;
   clear: both;
   margin: 10px;
 }
-/* line 70, ../compass/sass/main.scss */
+/* line 65, ../compass/sass/main.scss */
 #movie-wrapper .movie-row .now-playing-movie {
   float: left;
   width: 23%;
   margin: 1%;
 }
-/* line 76, ../compass/sass/main.scss */
+/* line 71, ../compass/sass/main.scss */
 #movie-wrapper .modal {
   background-color: black;
   opacity: 0.85;
